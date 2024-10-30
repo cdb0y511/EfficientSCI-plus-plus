@@ -23,7 +23,7 @@ def parse_args():
     parser.add_argument("config",type=str)
     parser.add_argument("--work_dir",type=str)
     parser.add_argument("--weights",type=str)
-    parser.add_argument("--device",type=str,default="cuda:4")
+    parser.add_argument("--device",type=str,default="cuda:0")
     args = parser.parse_args()
     if not torch.cuda.is_available():
         args.device="cpu"

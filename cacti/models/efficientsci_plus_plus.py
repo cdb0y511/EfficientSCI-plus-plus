@@ -182,9 +182,9 @@ class EfficientSCI_plus_plus(nn.Module):
         Phi_s_bayer = torch.zeros(b,h//2,w//2,4).to(y.device)
         for ib in range(len(bayer)):
             ba = bayer[ib]
-            y_bayer[...,ib] = y[:,ba[0]::2,ba[1]::2]
+            y_bayer[...,ib] = y[:,:,ba[0]::2,ba[1]::2]
             Phi_bayer[...,ib] = Phi[:,:,ba[0]::2,ba[1]::2]
-            Phi_s_bayer[...,ib] = Phi_s[:,ba[0]::2,ba[1]::2]
+            Phi_s_bayer[...,ib] = Phi_s[:,:,ba[0]::2,ba[1]::2]
         y_bayer = einops.rearrange(y_bayer,"b h w ba->(b ba) h w")
         Phi_bayer = einops.rearrange(Phi_bayer,"b f h w ba->(b ba) f h w")
         Phi_s_bayer = einops.rearrange(Phi_s_bayer,"b h w ba->(b ba) h w")
